@@ -1,0 +1,11 @@
+⚫●◽★
+——————————————————————
+⚫Go语言-Golang Gin Go Gorm Go-Micro微服务k8s教程 2024年3月更新
+https://www.bilibili.com/video/BV1XY4y1t76G
+http://bbs.itying.com/topic/6125d9fc2d11541aa0843713
+⚫15分钟带你快速上手Goland（Goland左侧项目结构不见了）
+https://www.bilibili.com/video/BV1vK411v7n2
+⚫一次性讲完Go语言的编译问题[1]-交叉编译篇
+https://www.bilibili.com/video/BV17a4y1R73r
+
+
