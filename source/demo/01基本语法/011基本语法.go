@@ -4,9 +4,12 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	//pname "fmt"// 导入，包名命名为pname
 	//_ "fmt"// 匿名导入，添加_，表示不暂时使用包名
+	//. "fmt"// 方法全导入，不需要包名调用
 	//"bao/calc" // 自定义包，需要导入项目根目录下的相对路径，若其中有Init函数，则会自动调用
 	//"github.com/shopspring/decimal"//第三方包
+
 	//https://pkg.go.dev查询包文档并写入导入语句
 	//命令行go mod init 【项目名称】自动生成go.mod文件
 	//命令行go mod tidy 自动导入依赖包

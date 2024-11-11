@@ -1,0 +1,55 @@
+⚫●◽★
+——————————————————————
+https://www.bilibili.com/video/BV1gf4y1r79E
+
+1入门
+⚫配置
+●GOPATH和GOROOT
+go env【cmd】
+set GOPATH=C:\Users\wenjiabao\go
+set GOROOT=C:\Program Files\Go
+
+⚫go特点
+1. 部署简单
+- 直译机器码
+- 不依赖三方库
+- 可直接运行
+2. 底层并发
+3. 标准库优化
+- runtime调度
+- GC垃圾回收
+
+⚫语法注意点
+函数名和{在同一行
+函数返回类型，可以实名，return时不用传变量名
+名字大写：public，小写：private
+
+⚫执行过程
+单包只能执行包内函数，多包需要跨包引用，执行步骤如下：
+1. 去import引用的包体
+2. const
+3. var
+4. 执行init()
+5. 执行main()
+递归进入包体直到栈底，依次栈调用执行2-4，直到回退到main，开始执行2-5
+
+⚫语法
+●指针
+默认值传递
+引用传递：指针
+●defer
+先return后defer
+defer函数的执行顺序是先进后出的栈，即先注册的defer函数最后执行
+●slice切片
+静态数组规定长度，值转递
+slice不规定长度，引用传递。make()函数创建或初始化赋值创建
+slice是引用类型，为避免一损俱损，需要使用copy()函数进行复制改为值传递
+●类的继承
+type SuperMan struct {
+	Man // 继承其实是利用组合实现的(匿名结构体属性)
+	score int
+}
+
+
+——————————————————————
+2

@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// 先return后defer
 // defer函数的执行顺序是先进后出的栈，即先注册的defer函数最后执行
 func d1() int {
 	x := 5
