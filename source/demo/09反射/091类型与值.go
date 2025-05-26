@@ -14,8 +14,8 @@ type Person struct {
 // 反射获取任意变量的类型
 func reflectFn(x interface{}) {
 	v := reflect.TypeOf(x)
-	// v.Name() //类型名称 ,种类（Kind）就是指底层的类型
-	// v.Kind() //种类
+	//v.Name() //类型名称
+	//v.Kind() //类型底层
 	fmt.Printf("类型:%v 类型名称:%v 类型种类:%v \n", v, v.Name(), v.Kind())
 }
 
@@ -80,6 +80,6 @@ func f2() {
 }
 
 func main() {
-	f1()
+	//f1()
 	f2()
 }

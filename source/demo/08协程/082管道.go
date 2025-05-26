@@ -12,6 +12,8 @@ func f3() {
 	ch1 <- 5
 	x := <-ch1
 	fmt.Println(x)
+	y := <-ch1
+	fmt.Println(y)
 	fmt.Printf("值：%v 容量：%v 长度%v\n", ch1, cap(ch1), len(ch1))
 	ch2 := ch1
 	fmt.Printf("值：%v 容量：%v 长度%v\n", ch2, cap(ch2), len(ch2)) // 管道是引用传递
@@ -24,10 +26,11 @@ func f4() {
 	for i := 1; i <= 10; i++ {
 		ch1 <- i
 	}
-	close(ch1) //关闭管道
-	//for range遍历，通道被关闭时会退出for range，如果没有关闭管道就会报个错误
+	close(ch1)
+	//如果没有关闭管道就for range会报错
 	for v := range ch1 { //管道没有key
 		fmt.Println(v)
+		//close(ch1) //for range遍历中通道被关闭时会报错
 	}
 
 }

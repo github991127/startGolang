@@ -24,7 +24,6 @@ func main() {
 	fmt.Println(fn()) //11
 
 	var fn2 = adder2()
-	fmt.Println(fn2(10)) //20
-	fmt.Println(fn2(10)) //30
-
+	fmt.Println(fn2(2)) //12
+	fmt.Println(fn2(2)) //14
 }

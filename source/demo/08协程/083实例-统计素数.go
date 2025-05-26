@@ -8,8 +8,10 @@ import (
 
 var wg083 sync.WaitGroup
 
+const maxNum = 100000
+
 func putNum(intChan chan int) {
-	for i := 2; i < 1000; i++ {
+	for i := 2; i < maxNum; i++ {
 		intChan <- i
 	}
 	close(intChan)
@@ -52,9 +54,9 @@ func main() {
 }
 
 func primeCount() {
-	coroutineNum := 4
-	intChan := make(chan int, 1000)           //存放所有数字
-	primeChan := make(chan int, 1000)         //存放素数
+	const coroutineNum = 10
+	intChan := make(chan int, maxNum)         //存放所有数字
+	primeChan := make(chan int, maxNum)       //存放素数
 	exitChan := make(chan bool, coroutineNum) //标识primeChan close
 
 	//存放数字的协程
@@ -75,7 +77,7 @@ func primeCount() {
 	wg083.Add(1)
 	go func() {
 		for i := 0; i < coroutineNum; i++ {
-			<-exitChan
+			<-exitChan //如果通道为空，读取操作会阻塞，直到有值可读
 		}
 		close(primeChan)
 		wg083.Done()

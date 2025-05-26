@@ -25,7 +25,7 @@ func f5() {
 		fmt.Printf("key:%v value:%v\n", k, v)
 	}
 
-	//修改，map类型是引用数据类型
+	//修改，map是引用
 	userinfo["age"] = "21"
 	//删除
 	delete(userinfo, "sex")
@@ -39,7 +39,6 @@ func f5() {
 
 // 字典切片
 func f6() {
-	//如果我们想存放多组map对象，我们就可以使用切片来存放
 	var userinfo = make([]map[string]string, 2, 2)
 	fmt.Println(userinfo[0])        //map[]   map不初始化的默认值nil
 	fmt.Println(userinfo[0] == nil) //true
@@ -59,7 +58,6 @@ func f6() {
 	}
 	fmt.Println(userinfo)
 
-	//如果我们想在map对象中存放一系列的属性的时候，我们就可以把map类型的值定义成切片
 	var userinfo2 = make(map[string][]string)
 	userinfo2["hobby"] = []string{
 		"吃饭",
@@ -70,10 +68,9 @@ func f6() {
 	userinfo2["work"] = []string{
 		"php",
 		"golang",
-		"前端",
+		"cpp",
 	}
 	fmt.Println(userinfo2)
-
 }
 
 // 字典排序
@@ -96,8 +93,6 @@ func f7() {
 	//2、让key进行升序排序
 	sort.Ints(keySlice)
 	fmt.Println(keySlice)
-
-	//3、循环遍历key输出map的值
 	for _, v := range keySlice {
 		fmt.Printf("key=%v value=%v\n", v, nums[v])
 	}
@@ -117,8 +112,8 @@ func f8() {
 
 }
 func main() {
-	//f5() // 字典
-	//f6() // 字典切片
-	//f7() // 字典排序
-	f8() // 统计单词数
+	//f5()
+	//f6()
+	f7()
+	//f8()
 }

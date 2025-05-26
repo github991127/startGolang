@@ -14,9 +14,10 @@ func f1() {
 	// arr1[2] = 50
 	//arr1 :=  [3]int{20, 30, 50}
 	//arr1 :=  [...]int{20, 30, 50}//自行推断数组的长度
-	arr1 := [...]int{0: 20, 2: 30, 5: 50} //指定索引和值
+	arr1 := [...]int{0: 10, 1: 11, 5: 15} //指定下标
 	fmt.Println(arr1)
 	fmt.Printf("arr1:%T\n", arr1)
+
 	arr2 := [3]string{"php", "nodejs", "golnag"}
 	fmt.Println(arr2)
 	fmt.Printf("arr2:%T\n", arr2)
@@ -26,13 +27,14 @@ func f1() {
 		fmt.Printf("key:%v value:%v\n", k, v)
 	}
 
-	//数组值传递，切片引用传递
+	//数组值传递
 	var arr3 = [...]int{1, 2, 3}
 	arr4 := arr3
 	arr4[0] = 11
 	fmt.Println(arr3) //[1 2 3]
 	fmt.Println(arr4) //[11 2 3]
 
+	//切片引用传递
 	var arr5 = []int{1, 2, 3}
 	arr6 := arr5
 	arr6[0] = 11
@@ -77,10 +79,10 @@ func f3() {
 	fmt.Printf("长度%d 容量%d\n", len(arr), cap(arr))
 
 	var arr1 []int
-	var arr2 = []int{1: 20, 2: 30, 5: 50}
+	var arr2 = []int{0: 10, 1: 11, 5: 15} //指定下标
+	fmt.Println(arr1 == nil)              //true golnag中申明切片以后 切片的默认值就是nil
 	fmt.Println(arr1, len(arr1))
-	fmt.Println(arr2, len(arr2)) //[]
-	fmt.Println(arr1 == nil)     //true golnag中申明切片以后 切片的默认值就是nil
+	fmt.Println(arr2, len(arr2))
 
 	//可以基于数组或切片创建新的切片
 	//容量=底层数组元素个数-第一个元素的索引
@@ -89,13 +91,13 @@ func f3() {
 	c := arr2[:3]
 	fmt.Printf("长度%d 容量%d\n", len(c), cap(c)) //长度3 容量6
 	d := c[2:]
-	fmt.Printf("长度%d 容量%d\n", len(d), cap(d)) //长度2 容量4
+	fmt.Printf("长度%d 容量%d\n", len(d), cap(d)) //长度1 容量4
 
 	//增删
-	arr = append(arr, 10)             //增加元素
-	arr = append(arr, arr2...)        //增加切片
-	arr = append(arr[:2], arr[3:]...) //删除索引为2的元素
-	fmt.Printf("长度%d 容量%d\n", len(arr), cap(arr))
+	arr = append(arr, 10)                         //增加元素
+	arr = append(arr, arr2...)                    //增加切片
+	arr = append(arr[:2], arr[3:]...)             //删除索引为2的元素
+	fmt.Printf("长度%d 容量%d\n", len(arr), cap(arr)) //长度10 容量16
 
 	//切片复制
 	sliceA := []int{1, 2, 3, 4}
@@ -120,6 +122,7 @@ func f3() {
 
 }
 
+// 排序
 func f4() {
 	//升序排序
 	arr := []int{3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5}
@@ -133,9 +136,9 @@ func f4() {
 	fmt.Println(arr)
 }
 func main() {
-	//f1() // 一维数组
-	//f2() // 二维数组
-	//f3() // 切片
-	f4() // 排序
+	//f1()
+	//f2()
+	f3()
+	//f4()
 
 }

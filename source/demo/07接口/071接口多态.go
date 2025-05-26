@@ -12,6 +12,14 @@ type Usber interface {
 type Computer struct {
 }
 
+// 实现接口方法
+func (c Computer) start() {
+	fmt.Println("接口方法1，启动")
+}
+func (c Computer) stop() {
+	fmt.Println("接口方法2，关闭")
+}
+
 func (c Computer) work(usb Usber) {
 	usb.start()
 	usb.stop()
@@ -51,5 +59,7 @@ func (p Phone) stop() {
 func main() {
 	var c = Computer{}
 	var p = Phone{"小米"}
+	c.work(c)
+	//p.work(p)
 	c.work(p) // 多态：不同实例调用接口方法
 }

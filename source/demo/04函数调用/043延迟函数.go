@@ -38,7 +38,7 @@ func errDiv(a int, b int) {
 		//panic("抛出一个异常") //手动抛出一个异常
 		err := recover() //捕获自动或手动的panic异常
 		if err != nil {
-			fmt.Println("error:", err)
+			fmt.Println(err)
 		}
 	}()
 	fmt.Println(a / b)
@@ -47,6 +47,6 @@ func main() {
 	fmt.Println(d1())
 	fmt.Println(d2())
 	fmt.Println(d3())
-	errDiv(10, 0) //error: runtime error: integer divide by zero
+	errDiv(10, 0) //runtime error: integer divide by zero
 	errDiv(10, 4) //output: 2
 }

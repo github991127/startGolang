@@ -9,18 +9,18 @@ import (
 	//. "fmt"// 方法全导入，不需要包名调用
 	//"bao/calc" // 自定义包，需要导入项目根目录下的相对路径，若其中有Init函数，则会自动调用
 	//"github.com/shopspring/decimal"//第三方包
-
 	//https://pkg.go.dev查询包文档并写入导入语句
 	//命令行go mod init 【项目名称】自动生成go.mod文件
 	//命令行go mod tidy 自动导入依赖包
 )
 
-// 声明与输出
 func getUserinfo() (string, int) {
 	return "匿名变量", 3
 }
+
+// 声明与输出
 func f1() {
-	//	Print无空格，不换行 Println有空格，换行
+	//	Print无空格，不换行；Println有空格，换行
 	fmt.Println("Hi", "golang") //Hi golang
 	fmt.Print("Hi", "golang\n") //Higolang
 
@@ -50,20 +50,21 @@ func f1() {
 	fmt.Println(pi)
 
 	// 常量声明-批量，如果省略了值则表示和上面一行的值相同。iota代表从0开始自增int
-	//const (
-	//	n1 = 100
-	//	n2
-	//	n3
-	//	n4
-	//)
 	const (
-		n1 = iota
+		n1 = 100
 		n2
 		n3
 		n4
 	)
-	fmt.Println(n1, n2, n3, n4)
+	fmt.Println(n1, n2, n3, n4) //100 100 100 100
 
+	const (
+		n5 = iota
+		n6
+		n7
+		n8
+	)
+	fmt.Println(n5, n6, n7, n8) //0 1 2 3
 }
 
 // 数据类型
@@ -81,6 +82,7 @@ func f2() {
 	str4
 	`
 	fmt.Println(str1234, len(str1234))
+
 	// 分割字符串strings.Split
 	var str1 = "123-456-789"
 	arr := strings.Split(str1, "-")
@@ -93,6 +95,7 @@ func f2() {
 	fmt.Println(arr)                        //[php java golang]
 	str3 := strings.Join(arr, "-")
 	fmt.Printf("%v,%T\n", str3, str3)
+
 	// 字符串判断strings
 	flag := strings.Contains(str1, str2) //包含
 	flag = strings.HasPrefix(str1, str2) //前缀
@@ -112,12 +115,12 @@ func f2() {
 	//}
 
 	// 修改字符串
-	byteStr := []byte(s)
-	byteStr[9] = 'S'
+	byteStr := []byte(s) //按byte字节
+	byteStr[9] = 'D'
 	fmt.Println(string(byteStr))
 
-	runeStr := []rune(s)
-	runeStr[0] = '大'
+	runeStr := []rune(s) //按rune字符
+	runeStr[5] = '大'
 	fmt.Println(string(runeStr))
 
 }
@@ -132,23 +135,24 @@ func f3() {
 	var b byte = 'a'
 
 	str1 := fmt.Sprintf("%d", i)
-	fmt.Printf("值：%v 类型：%T\n", str1, str1)
+	fmt.Printf("str1值：%v 类型：%T\n", str1, str1)
 
 	str2 := fmt.Sprintf("%.2f", f)
-	fmt.Printf("值：%v 类型：%T\n", str2, str2)
+	fmt.Printf("str2值：%v 类型：%T\n", str2, str2)
 
 	str3 := fmt.Sprintf("%t", t)
-	fmt.Printf("值：%v 类型：%T\n", str3, str3)
+	fmt.Printf("str3值：%v 类型：%T\n", str3, str3)
 
 	str4 := fmt.Sprintf("%c", b)
-	fmt.Printf("值：%v 类型：%T\n", str4, str4)
+	fmt.Printf("str4值：%v 类型：%T\n", str4, str4)
 
-	//strconv
+	//int-string
 	str5 := strconv.FormatInt(int64(i), 10) //参数1：int64 的数值;参数2：传值int类型的进制
-	fmt.Printf("值：%v 类型：%T\n", str5, str5)
+	fmt.Printf("str5值：%v 类型：%T\n", str5, str5)
 
+	//float-string
 	str6 := strconv.FormatFloat(float64(f), 'f', 4, 32)
-	fmt.Printf("值：%v 类型：%T\n", str6, str6)
+	fmt.Printf("str6值：%v 类型：%T\n", str6, str6)
 	//参数 1：要转换的值
 	//参数 2：格式化类型 'f'（-ddd.dddd）、
 	//	 'b'（-ddddp±ddd，指数为二进制）、
@@ -157,25 +161,26 @@ func f3() {
 	//	 'g'（指数很大时用'e'格式，否则'f'格式）、
 	//	 'G'（指数很大时用'E'格式，否则'f'格式）。
 	//参数 3: 保留的小数点 -1（不对小数点格式化）
-	//参数 4：格式化的类型 传入 64  32
+	//参数 4：位数 32 64
 
-	//String-Others
+	//string-int
 	//ParseInt，参数1：string数据，参数2：进制，参数3：位数 32 64 16
-	str7 := "123456"
-	num, _ := strconv.ParseInt(str7, 10, 64)
-	fmt.Printf("%v--%T\n", num, num)
+	strA := "123456"
+	str7, _ := strconv.ParseInt(strA, 10, 64)
+	fmt.Printf("str7值：%v 类型：%T\n", str7, str7)
 
+	//string-float
 	//ParseFloat，参数1：string数据，参数2：位数 32 64
-	str8 := "123456.333"
-	num2, _ := strconv.ParseFloat(str8, 64)
-	fmt.Printf("%v--%T\n", num2, num2)
+	strB := "123456.333"
+	str8, _ := strconv.ParseFloat(strB, 64)
+	fmt.Printf("str8值：%v 类型：%T\n", str8, str8)
 }
 
 // 数据运算
 func f4() {
 	fmt.Println(10 / 3)
 	fmt.Println(10 % 3)
-	fmt.Println(-10 % 3) //以前者除数正负号为准
+	fmt.Println(-10 % 3) //以 前者除数正负号为准
 	fmt.Println(10 % -3)
 	fmt.Println(-10 % -3)
 	year := 2024
@@ -190,8 +195,8 @@ func f4() {
 	fmt.Println("a>>b=", a>>b) // 1 值1    5除2的2次方
 }
 func main() {
-	//f1() // 声明与输出
-	//f2() // 数据类型
-	f3() // 类型转换
-	//f4() //数据运算
+	//f1()
+	//f2()
+	//f3()
+	f4()
 }

@@ -37,10 +37,11 @@ lable1:
 lable2:
 	//while-for
 	i := 1
-	for i <= 4 { //i <= 10，判断语句可省略，默认为true
+	for i <= 4 { //i <= 4，判断语句可省略，默认为true
 		fmt.Println(i)
 		i++ // fmt.Println(i++)错误，i++是语句
 	}
+
 	//for-in
 	var str = "你好golang"
 	for k, v := range str {
@@ -51,9 +52,9 @@ lable2:
 	for _, val := range arr {
 		fmt.Println(val)
 	}
-	for i := 0; i < len(arr); i++ {
-		fmt.Println(arr[i])
-	}
+	//for i := 0; i < len(arr); i++ {
+	//	fmt.Println(arr[i])
+	//}
 
 }
 
@@ -67,6 +68,7 @@ func f3() {
 	case "D":
 		fmt.Println("不及格")
 	}
+
 	//表达式case
 	var age = 18
 	switch {
@@ -85,6 +87,6 @@ func f3() {
 
 func main() {
 	//f1() // 条件语句
-	f2() // 循环语句
-	//f3() // 选择语句
+	//f2() // 循环语句
+	f3() // 选择语句
 }

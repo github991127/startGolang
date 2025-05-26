@@ -7,9 +7,8 @@ import (
 )
 
 var wg085 sync.WaitGroup
-
-// var mutex sync.Mutex // 互斥锁
 var mutex sync.RWMutex // 读写锁
+//var mutex sync.Mutex // 互斥锁
 
 // 写的方法
 func write() {

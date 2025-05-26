@@ -11,7 +11,7 @@ func f1() {
 	//func Fn1(x, y int) (sum, sub int)  {} //声明变量的多返回值，直接return
 }
 
-// 切片作为参数，是引用类型，无须返回也可以直接修改
+// slice引用
 func f2(slice []int) bool {
 	for i := 0; i < len(slice); i++ {
 		for j := i + 1; j < len(slice); j++ {
@@ -59,14 +59,14 @@ func f5() {
 }
 
 func main() {
-	//f1() // 调用函数
-
+	//f1()
+	//
 	//slice := []int{1, 34, 4, 35, 6, 36, 2}
 	//f2(slice)
 	//fmt.Println(slice)
 
-	//f3()         // 函数名赋值
-	//f4(1, 2, f2) // 函数作为另一个函数参数
-	f5() // 匿名函数
+	f3()
+	//f4(1, 2, f2)
+	//f5()
 
 }

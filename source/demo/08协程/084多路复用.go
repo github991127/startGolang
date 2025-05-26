@@ -18,7 +18,12 @@ func f5() {
 	for i := 0; i < 5; i++ {
 		stringChan <- "hello" + fmt.Sprintf("%d", i)
 	}
-	
+
+	defer func() {
+		close(intChan)
+		close(stringChan)
+	}()
+
 	//select,不需要关闭channel
 	for {
 		select {
@@ -30,7 +35,7 @@ func f5() {
 			time.Sleep(time.Millisecond * 50)
 		default:
 			fmt.Printf("数据获取完毕")
-			return //注意退出循环
+			return //注意退出循环，退出后关闭channel
 		}
 	}
 }

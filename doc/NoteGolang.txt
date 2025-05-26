@@ -1,5 +1,5 @@
-⚫●◽★
-——————————————————————
+
+
 https://www.bilibili.com/video/BV1gf4y1r79E
 
 1入门
@@ -35,8 +35,8 @@ set GOROOT=C:\Program Files\Go
 
 ⚫语法
 ●指针
-默认值传递
-引用传递：指针
+golang 只有值传递，没有引用传递
+golang 指针拷贝（类似引用传递效果）的有：slice,map,channel等等。其余为值拷贝
 ●defer
 先return后defer
 defer函数的执行顺序是先进后出的栈，即先注册的defer函数最后执行

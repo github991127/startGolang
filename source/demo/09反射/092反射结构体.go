@@ -54,12 +54,10 @@ func PrintStructField(s interface{}) {
 	}
 
 	//3、通过类型变量里面的NumField获取到该结构体有几个字段
-
 	var fieldCount = t.NumField()
 	fmt.Println("结构体有", fieldCount, "个属性")
 
 	//4、通过值变量获取结构体属性对应的值
-
 	fmt.Println(v.FieldByName("Name"))
 	fmt.Println(v.FieldByName("Age"))
 	fmt.Println("----------------------")
@@ -71,7 +69,6 @@ func PrintStructField(s interface{}) {
 
 // 打印执行方法
 func PrintStructFn(s interface{}) {
-
 	t := reflect.TypeOf(s)
 	v := reflect.ValueOf(s)
 	if t.Kind() != reflect.Struct && t.Elem().Kind() != reflect.Struct {
@@ -84,22 +81,22 @@ func PrintStructFn(s interface{}) {
 	fmt.Println(method0.Type) //func(main.Student) string
 
 	fmt.Println("--------------------------")
-	//2、通过类型变量获取这个结构体有多少个方法
 
+	//2、通过类型变量获取这个结构体有多少个方法
 	method1, ok := t.MethodByName("Print")
 	if ok {
 		fmt.Println(method1.Name) //Print
 		fmt.Println(method1.Type) //func(main.Student)
 	}
 	fmt.Println("--------------------------")
+
 	//3、通过《值变量》执行方法 （注意需要使用值变量，并且要注意参数） v.Method(0).Call(nil) 或者v.MethodByName("Print").Call(nil)
 	// v.Method(1).Call(nil)
 	v.MethodByName("Print").Call(nil)
-
 	info1 := v.MethodByName("GetInfo").Call(nil)
 	fmt.Println(info1)
-	//4、执行方法传入参数 （注意需要使用《值变量》，并且要注意参数,接收的参数是[]reflect.Value的切片）
 
+	//4、执行方法传入参数 （注意需要使用《值变量》，并且要注意参数,接收的参数是[]reflect.Value的切片）
 	var params []reflect.Value
 	params = append(params, reflect.ValueOf("李四"))
 	params = append(params, reflect.ValueOf(23))
@@ -110,7 +107,6 @@ func PrintStructFn(s interface{}) {
 	fmt.Println(info2)
 
 	// 5、获取方法数量
-
 	fmt.Println("方法数量:", t.NumMethod())
 
 }
@@ -136,15 +132,20 @@ func reflectChangeStruct(s interface{}) {
 	age.SetInt(22)
 
 }
-func main() {
+
+func f3() {
 	stu1 := Student{
 		Name:  "小明",
 		Age:   15,
 		Score: 98,
 	}
-	// PrintStructField(stu1)
-	//PrintStructFn(&stu1)
+	PrintStructField(stu1)
+	PrintStructFn(&stu1)
 	reflectChangeStruct(&stu1)
 
 	fmt.Printf("%#v\n", stu1)
+}
+
+func main() {
+	f3()
 }
