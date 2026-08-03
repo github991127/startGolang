@@ -1,179 +1,129 @@
+# 红黑树可视化教学应用
 
+一个基于 Python + Flask + 原生 HTML/JS 的交互式红黑树教学演示工具。支持插入、删除操作的逐步可视化，可回退到任意历史节点并重播完整修正过程。
 
-# ProjectName
+## 功能特性
 
-ProjectName and Description
+- **插入演示**：单节点插入、一键插入示例序列，自动播放插入修正动画
+- **删除演示**：节点删除及双黑修正过程可视化
+- **操作历史**：右侧历史列表可点击任意一次操作，重新播放完整修正过程
+- **步骤控制**：首页、上一步、下一步、末页、播放/暂停、重播
+- **规则校验**：实时显示红黑树五条规则校验结果
+- **变动原因**：每一步操作都附带教学级说明，解释为什么这样做
+- **中文提示**：所有错误与状态提示均为中文
 
-<!-- PROJECT SHIELDS -->
+## 技术栈
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+- **后端**：Python 3.10+、Flask（无 flask-cors，手动设置 CORS 头）
+- **数据结构**：自实现红黑树（插入、删除、旋转、变色、规则校验）
+- **桌面窗口**：PyWebView
+- **打包**：PyInstaller `--onedir`
+- **前端**：原生 HTML5 + CSS3 + JavaScript，SVG 绘制树结构
+- **操作系统**：Windows 10+
 
-<!-- PROJECT LOGO -->
-<br />
-
-<p align="center">
-  <a href="https://github.com/shaojintian/Best_README_template/">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">"完美的"README模板</h3>
-  <p align="center">
-    一个"完美的"README模板去快速开始你的项目！
-    <br />
-    <a href="https://github.com/shaojintian/Best_README_template"><strong>探索本项目的文档 »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/shaojintian/Best_README_template">查看Demo</a>
-    ·
-    <a href="https://github.com/shaojintian/Best_README_template/issues">报告Bug</a>
-    ·
-    <a href="https://github.com/shaojintian/Best_README_template/issues">提出新特性</a>
-  </p>
-
-</p>
-
-
- 本篇README.md面向开发者
- 
-## 目录
-
-- [上手指南](#上手指南)
-  - [开发前的配置要求](#开发前的配置要求)
-  - [安装步骤](#安装步骤)
-- [文件目录说明](#文件目录说明)
-- [开发的架构](#开发的架构)
-- [部署](#部署)
-- [使用到的框架](#使用到的框架)
-- [贡献者](#贡献者)
-  - [如何参与开源项目](#如何参与开源项目)
-- [版本控制](#版本控制)
-- [作者](#作者)
-- [鸣谢](#鸣谢)
-
-### 上手指南
-
-请将所有链接中的“shaojintian/Best_README_template”改为“your_github_name/your_repository”
-
-
-
-###### 开发前的配置要求
-
-1. xxxxx x.x.x
-2. xxxxx x.x.x
-
-###### **安装步骤**
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-
-```sh
-git clone https://github.com/shaojintian/Best_README_template.git
-```
-
-### 文件目录说明
-eg:
+## 目录结构
 
 ```
-filetree 
-├── ARCHITECTURE.md
-├── LICENSE.txt
-├── README.md
-├── /account/
-├── /bbs/
-├── /docs/
-│  ├── /rules/
-│  │  ├── backend.txt
-│  │  └── frontend.txt
-├── manage.py
-├── /oa/
-├── /static/
-├── /templates/
-├── useless.md
-└── /util/
-
+Red-BlackTree/
+├── app.py                 # PyWebView 桌面入口
+├── web.py                 # 网页入口：自动寻找空闲端口并打开浏览器
+├── api.py                 # Flask REST API
+├── build.bat              # PyInstaller onedir 打包脚本
+├── requirements.txt       # Python 依赖
+├── README.md              # 本文件
+├── Red-BlackTree.md       # 红黑树算法原理文档
+├── static/                # 前端静态资源
+│   ├── index.html
+│   ├── css/style.css
+│   └── js/app.js
+├── rb_tree/               # 红黑树核心库
+│   ├── __init__.py
+│   └── tree.py
+└── tests/                 # 单元测试
+    ├── __init__.py
+    └── test_tree.py
 ```
 
+## 安装依赖
 
+```bash
+pip install -r requirements.txt
+```
 
+## 运行方式
 
+### 网页版
 
-### 开发的架构 
+```bash
+python web.py
+```
 
-请阅读[ARCHITECTURE.md](https://github.com/shaojintian/Best_README_template/blob/master/ARCHITECTURE.md) 查阅为该项目的架构。
+服务启动后会自动寻找空闲端口并打开默认浏览器。
 
-### 部署
+### 桌面版
 
-暂无
+```bash
+python app.py
+```
 
-### 使用到的框架
+使用 PyWebView 打开 1400×900 的独立窗口。
 
-- [xxxxxxx](https://getbootstrap.com)
-- [xxxxxxx](https://jquery.com)
-- [xxxxxxx](https://laravel.com)
+### 运行测试
 
-### 贡献者
+```bash
+python -m pytest tests/ -v
+```
 
-请阅读**CONTRIBUTING.md** 查阅为该项目做出贡献的开发者。
+### 打包
 
-#### 如何参与开源项目
+```bash
+build.bat
+```
 
-贡献使开源社区成为一个学习、激励和创造的绝佳场所。你所作的任何贡献都是**非常感谢**的。
+输出目录为 `dist/RedBlackTree/`，运行 `dist/RedBlackTree/RedBlackTree.exe`。打包使用 `--onedir` 模式，静态资源通过 `--add-data` 一并打包。
 
+## API 接口
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+所有接口统一返回如下格式：
 
+```json
+{
+  "success": true,
+  "data": { ... },
+  "error": "..."
+}
+```
 
+预检请求 `OPTIONS` 会自动返回 204，前端无需额外处理 CORS。
 
-### 版本控制
+| 接口 | 方法 | 说明 |
+|------|------|------|
+| `/api/init` | POST | 创建新会话，返回 `session_id` |
+| `/api/tree/<session_id>` | GET | 获取当前树结构及规则校验结果 |
+| `/api/reset` | POST | 清空指定会话的树 |
+| `/api/insert` | POST | 插入节点，返回树快照、完整步骤与历史 |
+| `/api/delete` | POST | 删除节点，返回树快照、完整步骤与历史 |
 
-该项目使用Git进行版本管理。您可以在repository参看当前可用版本。
+### 请求示例
 
-### 作者
+```bash
+curl -X POST http://127.0.0.1:5000/api/init -H "Content-Type: application/json" -d '{}'
+```
 
-xxx@xxxx
+## 设计原则
 
-知乎:xxxx  &ensp; qq:xxxxxx    
+- **原数据不可修改**：核心算法通过深拷贝保护内部状态
+- **全局状态集中**：后端 `session_store` 统一管理所有会话
+- **不要硬编码**：关键参数（如节点上限）提取为常量
+- **错误提示友好**：空值、非整数、重复节点、节点不存在、数量超限均有中文提示
 
- *您也可以在贡献者名单中参看所有参与该项目的开发者。*
+## 开发注意事项
 
-### 版权说明
+- CORS 处理方式：未引入 `flask-cors`，而是在 `api.py` 中通过 `after_request` 手动设置响应头。
+- 静态资源：生产运行与 PyInstaller 打包均依赖 `api.py` 中的 `STATIC_DIR`；新增资源请一并放入 `build.bat` 的 `--add-data` 参数。
+- 端口冲突：`web.py` 与 `app.py` 都会自动从 5000 开始寻找空闲端口。
+- 节点数量限制：`api.py` 中 `MAX_NODES = 100`，防止过大树导致前端渲染异常。
 
-该项目签署了MIT 授权许可，详情请参阅 [LICENSE.txt](https://github.com/shaojintian/Best_README_template/blob/master/LICENSE.txt)
+## 红黑树参考资料
 
-### 鸣谢
-
-
-- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-- [Img Shields](https://shields.io)
-- [Choose an Open Source License](https://choosealicense.com)
-- [GitHub Pages](https://pages.github.com)
-- [Animate.css](https://daneden.github.io/animate.css)
-- [xxxxxxxxxxxxxx](https://connoratherton.com/loaders)
-
-<!-- links -->
-[your-project-path]:shaojintian/Best_README_template
-[contributors-shield]: https://img.shields.io/github/contributors/shaojintian/Best_README_template.svg?style=flat-square
-[contributors-url]: https://github.com/shaojintian/Best_README_template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/shaojintian/Best_README_template.svg?style=flat-square
-[forks-url]: https://github.com/shaojintian/Best_README_template/network/members
-[stars-shield]: https://img.shields.io/github/stars/shaojintian/Best_README_template.svg?style=flat-square
-[stars-url]: https://github.com/shaojintian/Best_README_template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/shaojintian/Best_README_template.svg?style=flat-square
-[issues-url]: https://img.shields.io/github/issues/shaojintian/Best_README_template.svg
-[license-shield]: https://img.shields.io/github/license/shaojintian/Best_README_template.svg?style=flat-square
-[license-url]: https://github.com/shaojintian/Best_README_template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/shaojintian
-
-
-
-
+详见 [Red-BlackTree.md](Red-BlackTree.md)。

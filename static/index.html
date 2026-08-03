@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>红黑树可视化演示</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>红黑树可视化演示</h1>
+      <p class="subtitle">通过具体例子理解插入、删除与修正过程</p>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="insert">插入演示</button>
+      <button class="tab" data-tab="delete">删除演示</button>
+      <button class="tab" data-tab="rules">规则说明</button>
+    </nav>
+
+    <main class="main">
+      <!-- 插入演示 -->
+      <section id="panel-insert" class="panel active">
+        <div class="controls">
+          <div class="input-group">
+            <label for="insert-value">节点值</label>
+            <input id="insert-value" type="number" placeholder="例如 15" value="15" />
+          </div>
+          <button id="btn-insert" class="btn primary">插入</button>
+          <button id="btn-insert-example" class="btn">插入示例序列</button>
+          <button id="btn-reset" class="btn danger">清空树</button>
+        </div>
+      </section>
+
+      <!-- 删除演示 -->
+      <section id="panel-delete" class="panel">
+        <div class="controls">
+          <div class="input-group">
+            <label for="delete-value">节点值</label>
+            <input id="delete-value" type="number" placeholder="例如 5" value="5" />
+          </div>
+          <button id="btn-delete" class="btn primary">删除</button>
+        </div>
+      </section>
+
+      <!-- 规则说明 -->
+      <section id="panel-rules" class="panel">
+        <div class="rules">
+          <h2>红黑树五条规则</h2>
+          <ul>
+            <li><strong>规则 1：</strong>每个节点非红即黑。</li>
+            <li><strong>规则 2：</strong>根节点为黑色。</li>
+            <li><strong>规则 3：</strong>所有叶子（NIL）为黑色。</li>
+            <li><strong>规则 4：</strong>红色节点的子节点必须为黑色（不能连续红）。</li>
+            <li><strong>规则 5：</strong>任意节点到其叶子的路径黑色节点数量相同（黑高一致）。</li>
+          </ul>
+          <p class="motto">左根右 · 根叶同 · 不红红 · 黑路同</p>
+        </div>
+      </section>
+
+      <!-- 可视化与步骤 -->
+      <div class="workspace">
+        <div class="tree-container">
+          <svg id="tree-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <aside class="steps-panel">
+          <div class="validity" id="validity">等待初始化…</div>
+          <div class="reason-box" id="reason-box">
+            <strong>当前变动原因</strong>
+            <p id="reason-text">等待操作…</p>
+          </div>
+          <div class="player">
+            <button id="btn-first" class="btn small" disabled>⏮</button>
+            <button id="btn-prev" class="btn small" disabled>◀</button>
+            <button id="btn-play" class="btn small primary">播放</button>
+            <button id="btn-next" class="btn small" disabled>▶</button>
+            <button id="btn-last" class="btn small" disabled>⏭</button>
+            <button id="btn-replay" class="btn small">重播</button>
+          </div>
+          <div class="history-section">
+            <strong>操作历史（点击可回退到任意节点）</strong>
+            <div class="history-list" id="history-list"></div>
+          </div>
+          <div class="step-list" id="step-list"></div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="/js/app.js"></script>
+</body>
+</html>
